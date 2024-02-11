@@ -1,20 +1,17 @@
-def majorityElement(v: [int]) -> int:
-    # Write your code here
-    hashMap = {}
-    for i in range(len(v)):
-        if v[i] not in hashMap:
-            hashMap[v[i]] = 1
-        else:
-            hashMap[v[i]] += 1
+from typing import List
 
-    for key,value in hashMap.items():
-        if value > len(v)//2:
-            return key
-    return -1
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 0
+        element = None
+        for i in range(len(nums)):
+            if count == 0:
+                element = nums[i]
+                count = 1
+            elif nums[i] == element:
+                count += 1
+            else:
+                count -= 1
+        return element
 
-def majorityElementOptimised(v):
-    for i in range(len(v)):
-        
-
-
-print(majorityElement([2,2,1,3,1,1,3,1,1]))
+print(Solution().majorityElement([1,2,3,2,1,2,2]))
