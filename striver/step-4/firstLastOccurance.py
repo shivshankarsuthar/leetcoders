@@ -2,25 +2,29 @@ from typing import List
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        startIndex = 0
+        for i in range(len(nums)-1):
+            if nums[i] > nums[i+1]:
+                startIndex = i + 1
+                break
+        
         l = 0
         r = len(nums) - 1
         while l <= r:
             m = (l+r)//2
+            print(l,m,r)
             if nums[m] == target:
-                it = m
-                while it > -1 and nums[it] == nums[m] :
-                    it -= 1
-                firstNumber = it + 1
-                it = m
-                while it < len(nums) and nums[it] == nums[m]  :
-                    it += 1
-                secondNumber = it - 1
-                return [firstNumber,secondNumber]
-
-            elif nums[m] > target:
-                r = m - 1
-            else:
+                return m
+            if nums[startIndex] == target:
+                return startIndex
+            if nums[m] > target and nums[startIndex] > target:
+                r = m -1
+            elif nums[m] < target and nums[startIndex] > target:
                 l = m + 1
-        return [-1,-1]
+                r = startIndex - 1
+            elif nums[m] < target and nums[startIndex] < target:
+                l = startIndex + 1
+        return -1
 
-print(Solution().searchRange([],6))
+
+print(Solution().searchRange([4,5,6,7,0,1,2],5))
