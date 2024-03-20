@@ -5,10 +5,8 @@ def binarySearch(arr,l,r,x):
         if arr[m] > x:
             ans = m
             r = m - 1
-        elif arr[m] < x:
-            l = m + 1
         else:
-            return m + 1
+            l = m + 1
 
     return ans
 
