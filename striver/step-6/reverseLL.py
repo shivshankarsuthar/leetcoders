@@ -1,23 +1,33 @@
-'''
-Following is the structure of the Node class already defined.
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-        self.prev = None
-        
-'''
+def constructLL(arr) -> ListNode:
+# Write your code here
+    root = None
+    for i in range(len(arr)-1,-1,-1):
+        root = insertNode(root,arr[i])
+    return root
 
-def reverseDLL(head):
-    # Write your code here
-    if head.next is None:
-        return head
-    current = head
-    while current != None:
-        current.prev,current.next = current.next,current.prev
-        if current.prev is None:
-            break
-        current = current.prev
+def insertNode(root,item):
+    node = ListNode(item)
+    node.next = root
+    root = node
+    return root
+    
+class Solution:
 
-    return current
+    
+    def reverseList(self, head):
+        current = head
+        prev = None
+
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+
+        return prev
