@@ -2,10 +2,14 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
         if n < 0:
+            x = 1/x
             n = -n
-            x = (1/x)
-        if n == 0:
-            return 1
-        return x * self.myPow(x,n-1)
+        y = 1
+        while n != 0:
+            if n & 1:
+                y *= x
+            x = x * x
+            n = n // 2
+        return y
         
-print(Solution().myPow(0.00001,))
+print(Solution().myPow(2,-5))
