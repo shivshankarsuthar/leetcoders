@@ -3,13 +3,23 @@ from typing import List
 
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        maxElement = max(piles)
-        for i in range(1,maxElement+1):
+        l = 1
+        r = max(piles)
+        ans = -1
+        while l <= r:
+            m = (l+r)//2
             totalHours = 0
             for pile in piles:
-                takenHour = math.ceil(pile/i)
-                totalHours += takenHour
+                totalHours += math.ceil(pile/m)
+                if totalHours > h:
+                    l = m + 1
+                    ans = m
+                    break
+
             if totalHours == h:
-                return i
+                return m
+            elif totalHours <= h:
+                r = m - 1
+        return ans
             
-print(Solution().minEatingSpeed([30,11,23,4,20],5))
+print(Solution().minEatingSpeed([312884470],312884469))
