@@ -3,17 +3,14 @@ from typing import List
 
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        prefixSum = {0:1}
         sum = 0
-        i = 0
         count = 0
         for i in range(len(nums)):
-            sum = 0
-            for j in range(i,len(nums)):
-                sum += nums[j]
-                if sum == goal:
-                    count += 1
-                elif sum > goal:
-                    break
+            sum += nums[i]
+            if (sum - goal) in prefixSum:
+                count += prefixSum[sum-goal]
+            prefixSum[sum] = prefixSum.get(sum,0) + 1
         return count
-
-print(Solution().numSubarraysWithSum([1,0,1,0,1],2))
+    
+print(Solution().numSubarraysWithSum([0,0,0,0,0],0))
