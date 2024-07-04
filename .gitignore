@@ -1,1 +1,7 @@
 node_modules
+venv
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
