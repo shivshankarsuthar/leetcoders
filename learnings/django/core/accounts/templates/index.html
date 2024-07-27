@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block start %}
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus assumenda maiores pariatur!
+<hr></hr>
+{% for item in items %}
+{{forloop.counter}}: <br>
+{% if item == 2 %}
+    <p>this is {{item}}</p>
+{% endif %}
+{% ifchanged item %}
+ <h1>{{item}}</h1>
+{% endifchanged %}
+{% endfor %}
+{% endblock %}
