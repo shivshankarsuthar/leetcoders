@@ -7,4 +7,34 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'example';
+  topic:string = '';
+  items:any[] = [
+    {
+      value:'Physics'
+    },
+    {
+      value:'Math'
+    },
+    {
+      value:'Chemistry'
+    }
+  ]
+
+  constructor(){}
+
+  onInit(){
+
+  }
+
+  addInList(){
+    this.items.push(
+      {
+        value:this.topic
+      }
+    );
+  }
+
+  deleteInList(index:number){
+    this.items.splice(index,1);
+  }
 }
