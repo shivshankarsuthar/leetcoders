@@ -21,5 +21,6 @@ from accounts.admin import admin_site as accounts_admin
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/',include('accounts.urls')),
-    path('api/admin/',accounts_admin.urls)
+    path('api/admin/',accounts_admin.urls),
+    path('restaurent/',include('restaurent.urls'))
 ]
